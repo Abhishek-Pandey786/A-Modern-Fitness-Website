@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Login - Fitness Website</title>
+</head>
+<body>
+  <nav>
+    <img src="assets/logo.png" class="nav__logo" alt="Logo">
+    <ul class="nav__links">
+      <li class="link"><a href="index.html">Home</a></li>
+      <li class="link"><a href="programs.html">Programs</a></li>
+      <li class="link"><a href="about.html">About</a></li>
+      <li class="link"><a href="contact.html">Contact</a></li>
+      <li class="link"><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <section class="login__container section__container">
+    <div class="login__content">
+      <h2 class="section__header">Login</h2>
+      <form class="login__form">
+        <div class="form__group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form__group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p class="login__text">Don't have an account? <a href="register.html">Sign up here</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Fitness Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
