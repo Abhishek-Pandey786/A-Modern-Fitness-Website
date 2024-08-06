@@ -4,18 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet"
+  />
   <title>Register - Fitness Website</title>
 </head>
 <body>
   <nav>
     <img src="assets/logo.png" class="nav__logo" alt="Logo">
     <ul class="nav__links">
-      <li class="link"><a href="index.html">Home</a></li>
-      <li class="link"><a href="programs.html">Programs</a></li>
-      <li class="link"><a href="services.html">Services</a></li>
-      <li class="link"><a href="about.html">About</a></li>
-      <li class="link"><a href="community.html">Community</a></li>
-      <li class="link"><a href="login.html">Login</a></li>
+      <li class="link"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li class="link"><a href="programs.html"><i class="fas fa-dumbbell"></i> Programs</a></li>
+      <li class="link"><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+      <li class="link"><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      <li class="link"><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+      <li class="link"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
     </ul>
   </nav>
 
@@ -42,11 +46,80 @@
         <button type="submit" class="btn">Register</button>
       </form>
       <p class="register__text">Already have an account? <a href="login.html">Login here</a></p>
+      <p class="register__text"><a href="#" id="termsBtn">Read Terms and Conditions</a></p>
     </div>
   </section>
 
   <footer>
     <p>&copy; 2024 Fitness Website. All rights reserved.</p>
   </footer>
+
+  <!-- Modal for Terms and Conditions -->
+  <div id="termsModal" class="modal">
+    <div class="modal__content">
+      <span class="close">&times;</span>
+      <h2>Terms and Conditions</h2><br>
+      <h2>1. Introduction</h2>
+        <p><br>Welcome to FitClub. By completing the registration process and becoming a member of our gym, you agree to comply with and be bound by the following terms and conditions. Please read them carefully before registering.</p><br>
+
+        <h2>2. Membership</h2><br>
+        <p><strong>2.1 Eligibility:</strong> To be eligible for membership, you must be at least 18 years old. Minors may join with written consent from a parent or legal guardian.</p>
+        <p><strong>2.2 Membership Types:</strong> Memberships are available in various types, including monthly, quarterly, and annual plans. Each membership type has specific benefits and limitations.</p>
+        <p><strong>2.3 Registration:</strong> All personal information provided during registration must be accurate and up-to-date. You are responsible for informing us of any changes to your personal information.</p><br>
+
+        <h2>3. Payment</h2><br>
+        <p><strong>3.1 Fees:</strong> Membership fees are non-refundable and are due at the time of registration. The fees are subject to change, and any changes will be communicated to members in advance.</p>
+        <p><strong>3.2 Payment Method:</strong> Payment can be made through credit/debit cards, direct bank transfers, or other accepted methods as specified by the gym.</p>
+        <p><strong>3.3 Late Payments:</strong> Failure to make timely payments may result in suspension or termination of membership.</p><br>
+
+        <h2>4. Health and Safety</h2><br>
+        <p><strong>4.1 Medical Clearance:</strong> You should consult with a healthcare provider before starting any exercise program. By registering, you confirm that you are in good health and have no medical conditions that would preclude you from participating in physical activities.</p>
+        <p><strong>4.2 Liability:</strong> FitClub is not liable for any injuries or health issues that may arise from participation in gym activities. You participate at your own risk.</p>
+        <p><strong>4.3 Emergency Procedures:</strong> In case of an emergency, follow the gym’s emergency procedures and inform a staff member immediately.</p><br>
+
+        <h2>5. Use of Facilities</h2><br>
+        <p><strong>5.1 Access:</strong> Your membership provides access to gym facilities during operating hours. Some facilities or equipment may have restrictions or may be unavailable due to maintenance.</p>
+        <p><strong>5.2 Conduct:</strong> Members are expected to conduct themselves in a respectful manner. Aggressive behavior, abuse of staff or other members, and vandalism are strictly prohibited.</p>
+        <p><strong>5.3 Personal Items:</strong> The gym is not responsible for lost or stolen personal items. Please use lockers provided and secure your belongings.</p><br>
+
+        <h2>6. Termination and Suspension</h2><br>
+        <p><strong>6.1 Termination by Member:</strong> You may terminate your membership by providing written notice to the gym. Refunds for unused membership periods are not provided.</p>
+        <p><strong>6.2 Termination by Gym:</strong> The gym reserves the right to terminate or suspend memberships for breach of terms, misconduct, or non-payment. No refunds will be issued for terminated memberships.</p><br>
+
+        <h2>7. Changes to Terms</h2><br>
+        <p>FitClub reserves the right to modify these terms and conditions at any time. Changes will be communicated to members through notice at the gym or via email. Continued use of the gym after changes constitutes acceptance of the new terms.</p><br>
+
+        <h2>8. Privacy Policy</h2><br>
+        <p>We respect your privacy and will handle your personal information in accordance with our Privacy Policy, which is available on our website or upon request.</p>
+    </div>
+  </div>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("termsModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("termsBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>

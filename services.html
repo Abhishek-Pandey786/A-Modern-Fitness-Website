@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        rel="stylesheet"
+    />
     <title>Services - Fitclub</title>
 </head>
 <body>
@@ -12,12 +16,12 @@
             <a href="index.html"><img src="assets/logo.png" alt="logo"></a>
         </div>
         <ul class="nav__links">
-            <li class="link"><a href="index.html">Home</a></li>
-            <li class="link"><a href="programs.html">Programs</a></li>
-            <li class="link"><a href="services.html">Services</a></li>
-            <li class="link"><a href="about.html">About</a></li>
-            <li class="link"><a href="community.html">Community</a></li>
-            <li class="link"><a href="login.html">Login</a></li>
+            <li class="link"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li class="link"><a href="programs.html"><i class="fas fa-dumbbell"></i> Programs</a></li>
+            <li class="link"><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li class="link"><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li class="link"><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li class="link"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
         </ul>
     </nav>
 
@@ -31,19 +35,23 @@
     <section class="section__container service__container">
         <h2 class="section__header">Our Services</h2>
         <div class="service__grid">
-            <div class="service__card">
+            <div class="service__card" id="personalTrainingBtn">
+                <i class="fas fa-user-tie"></i>
                 <h4>Personal Training</h4>
                 <p>Get one-on-one coaching to reach your fitness goals faster.</p>
             </div>
-            <div class="service__card">
+            <div class="service__card" id="nutritionalGuidanceBtn">
+                <i class="fas fa-apple-alt"></i>
                 <h4>Nutritional Guidance</h4>
                 <p>Personalized meal plans to complement your workouts.</p>
             </div>
-            <div class="service__card">
+            <div class="service__card" id="wellnessProgramsBtn">
+                <i class="fas fa-spa"></i>
                 <h4>Wellness Programs</h4>
                 <p>Holistic programs designed to improve overall well-being.</p>
             </div>
-            <div class="service__card">
+            <div class="service__card" id="groupClassesBtn">
+                <i class="fas fa-users"></i>
                 <h4>Group Classes</h4>
                 <p>Join our group classes for a fun and engaging workout experience.</p>
             </div>
@@ -62,5 +70,92 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modals for Services -->
+    <div id="personalTrainingModal" class="modal">
+        <div class="modal__content">
+            <span class="close">&times;</span>
+            <h2>Personal Training</h2>
+            <p>Get personalized attention and custom workout plans to achieve your fitness goals with our certified personal trainers.</p>
+        </div>
+    </div>
+
+    <div id="nutritionalGuidanceModal" class="modal">
+        <div class="modal__content">
+            <span class="close">&times;</span>
+            <h2>Nutritional Guidance</h2>
+            <p>Our nutritionists provide tailored meal plans and advice to help you complement your workouts and maintain a balanced diet.</p>
+        </div>
+    </div>
+
+    <div id="wellnessProgramsModal" class="modal">
+        <div class="modal__content">
+            <span class="close">&times;</span>
+            <h2>Wellness Programs</h2>
+            <p>Explore our holistic wellness programs that focus on improving overall health and well-being through various activities and therapies.</p>
+        </div>
+    </div>
+
+    <div id="groupClassesModal" class="modal">
+        <div class="modal__content">
+            <span class="close">&times;</span>
+            <h2>Group Classes</h2>
+            <p>Participate in our group classes for a motivating and social workout experience, including yoga, aerobics, and strength training.</p>
+        </div>
+    </div>
+
+    <script>
+        // Get the modals
+        var modals = document.querySelectorAll(".modal");
+
+        // Get the buttons that open the modals
+        var buttons = {
+            personalTrainingBtn: document.getElementById("personalTrainingBtn"),
+            nutritionalGuidanceBtn: document.getElementById("nutritionalGuidanceBtn"),
+            wellnessProgramsBtn: document.getElementById("wellnessProgramsBtn"),
+            groupClassesBtn: document.getElementById("groupClassesBtn")
+        };
+
+        // Get the <span> elements that close the modals
+        var spans = document.querySelectorAll(".close");
+
+        // Function to open a modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        // Function to close a modal
+        function closeModal() {
+            modals.forEach(modal => modal.style.display = "none");
+        }
+
+        // Add click event listeners to buttons
+        buttons.personalTrainingBtn.onclick = function() {
+            openModal("personalTrainingModal");
+        }
+        buttons.nutritionalGuidanceBtn.onclick = function() {
+            openModal("nutritionalGuidanceModal");
+        }
+        buttons.wellnessProgramsBtn.onclick = function() {
+            openModal("wellnessProgramsModal");
+        }
+        buttons.groupClassesBtn.onclick = function() {
+            openModal("groupClassesModal");
+        }
+
+        // Add click event listeners to spans
+        spans.forEach(span => {
+            span.onclick = function() {
+                closeModal();
+            }
+        });
+
+        // Add click event listener to window
+        window.onclick = function(event) {
+            if (event.target.classList.contains("modal")) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
