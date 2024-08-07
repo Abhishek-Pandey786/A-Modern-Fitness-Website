@@ -1107,3 +1107,53 @@ footer p {
   padding: 10px;
   box-sizing: border-box;
 }
+
+/* Base styles for navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+}
+
+.nav__logo {
+  padding: 10px;
+}
+
+.swiper {
+  display: flex;
+  width: 100%;
+}
+
+.swiper-slide {
+  padding: 10px;
+}
+
+.swiper-slide a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .swiper-slide {
+      font-size: 14px;
+  }
+
+  .swiper-slide a {
+      display: block;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper-slide {
+      font-size: 12px;
+  }
+
+  .swiper-slide a {
+      padding: 8px;
+      font-size: 12px;
+  }
+}
