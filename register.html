@@ -1,125 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    rel="stylesheet"
-  />
-  <title>Register - Fitness Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <title>Register - Fitness Website</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .valid {
+            border-color: green;
+        }
+
+        .invalid {
+            border-color: red;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .btn:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal__content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .success-message {
+            font-size: 1.2em;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
-  <nav>
-    <img src="assets/logo.png" class="nav__logo" alt="Logo">
-    <ul class="nav__links">
-      <li class="link"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-      <li class="link"><a href="programs.html"><i class="fas fa-dumbbell"></i> Programs</a></li>
-      <li class="link"><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
-      <li class="link"><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-      <li class="link"><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
-      <li class="link"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-    </ul>
-  </nav>
+    <nav>
+        <img src="assets/logo.png" class="nav__logo" alt="Logo">
+        <ul class="nav__links">
+            <li class="link"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li class="link"><a href="programs.html"><i class="fas fa-dumbbell"></i> Programs</a></li>
+            <li class="link"><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li class="link"><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li class="link"><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li class="link"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </nav>
 
-  <section class="register__container section__container">
-    <div class="register__content">
-      <h2 class="section__header">Register</h2>
-      <form class="register__form">
-        <div class="form__group">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
+    <section class="register__container section__container">
+        <div class="register__content">
+            <h2 class="section__header">Register</h2>
+            <form class="register__form" id="registerForm">
+                <div class="form__group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <div id="usernameError" class="error hidden">Please enter at least 3 alphabetic characters.</div>
+                </div>
+                <div class="form__group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div id="emailError" class="error hidden">Please enter a valid email address.</div>
+                </div>
+                <div class="form__group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <div id="passwordError" class="error hidden">Password must be at least 8 characters long and contain both letters and numbers.</div>
+                </div>
+                <div class="form__group">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                    <div id="confirmPasswordError" class="error hidden">Passwords do not match.</div>
+                </div>
+                <div class="form__group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                    <div id="dobError" class="error hidden">You must be at least 18 years old.</div>
+                </div>
+                <button type="submit" class="btn" id="submitBtn" disabled>Register</button>
+            </form>
+            <p class="register__text">Already have an account? <a href="login.html">Login here</a></p>
+            <p class="register__text"><a href="terms.html">Read Terms and Conditions</a></p>
         </div>
-        <div class="form__group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fitness Website. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Terms and Conditions -->
+    <div id="termsModal" class="modal">
+        <div class="modal__content">
+            <span class="close">&times;</span>
+            <h2>Terms and Conditions</h2><br>
+            <!-- Terms and Conditions content here -->
         </div>
-        <div class="form__group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form__group">
-          <label for="confirm_password">Confirm Password:</label>
-          <input type="password" id="confirm_password" name="confirm_password" required>
-        </div>
-        <button type="submit" class="btn">Register</button>
-      </form>
-      <p class="register__text">Already have an account? <a href="login.html">Login here</a></p>
-      <p class="register__text"><a href="#" id="termsBtn">Read Terms and Conditions</a></p>
     </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2024 Fitness Website. All rights reserved.</p>
-  </footer>
-
-  <!-- Modal for Terms and Conditions -->
-  <div id="termsModal" class="modal">
-    <div class="modal__content">
-      <span class="close">&times;</span>
-      <h2>Terms and Conditions</h2><br>
-      <h2>1. Introduction</h2>
-        <p><br>Welcome to FitClub. By completing the registration process and becoming a member of our gym, you agree to comply with and be bound by the following terms and conditions. Please read them carefully before registering.</p><br>
-
-        <h2>2. Membership</h2><br>
-        <p><strong>2.1 Eligibility:</strong> To be eligible for membership, you must be at least 18 years old. Minors may join with written consent from a parent or legal guardian.</p>
-        <p><strong>2.2 Membership Types:</strong> Memberships are available in various types, including monthly, quarterly, and annual plans. Each membership type has specific benefits and limitations.</p>
-        <p><strong>2.3 Registration:</strong> All personal information provided during registration must be accurate and up-to-date. You are responsible for informing us of any changes to your personal information.</p><br>
-
-        <h2>3. Payment</h2><br>
-        <p><strong>3.1 Fees:</strong> Membership fees are non-refundable and are due at the time of registration. The fees are subject to change, and any changes will be communicated to members in advance.</p>
-        <p><strong>3.2 Payment Method:</strong> Payment can be made through credit/debit cards, direct bank transfers, or other accepted methods as specified by the gym.</p>
-        <p><strong>3.3 Late Payments:</strong> Failure to make timely payments may result in suspension or termination of membership.</p><br>
-
-        <h2>4. Health and Safety</h2><br>
-        <p><strong>4.1 Medical Clearance:</strong> You should consult with a healthcare provider before starting any exercise program. By registering, you confirm that you are in good health and have no medical conditions that would preclude you from participating in physical activities.</p>
-        <p><strong>4.2 Liability:</strong> FitClub is not liable for any injuries or health issues that may arise from participation in gym activities. You participate at your own risk.</p>
-        <p><strong>4.3 Emergency Procedures:</strong> In case of an emergency, follow the gym’s emergency procedures and inform a staff member immediately.</p><br>
-
-        <h2>5. Use of Facilities</h2><br>
-        <p><strong>5.1 Access:</strong> Your membership provides access to gym facilities during operating hours. Some facilities or equipment may have restrictions or may be unavailable due to maintenance.</p>
-        <p><strong>5.2 Conduct:</strong> Members are expected to conduct themselves in a respectful manner. Aggressive behavior, abuse of staff or other members, and vandalism are strictly prohibited.</p>
-        <p><strong>5.3 Personal Items:</strong> The gym is not responsible for lost or stolen personal items. Please use lockers provided and secure your belongings.</p><br>
-
-        <h2>6. Termination and Suspension</h2><br>
-        <p><strong>6.1 Termination by Member:</strong> You may terminate your membership by providing written notice to the gym. Refunds for unused membership periods are not provided.</p>
-        <p><strong>6.2 Termination by Gym:</strong> The gym reserves the right to terminate or suspend memberships for breach of terms, misconduct, or non-payment. No refunds will be issued for terminated memberships.</p><br>
-
-        <h2>7. Changes to Terms</h2><br>
-        <p>FitClub reserves the right to modify these terms and conditions at any time. Changes will be communicated to members through notice at the gym or via email. Continued use of the gym after changes constitutes acceptance of the new terms.</p><br>
-
-        <h2>8. Privacy Policy</h2><br>
-        <p>We respect your privacy and will handle your personal information in accordance with our Privacy Policy, which is available on our website or upon request.</p>
+    <!-- Modal for Successful Registration -->
+    <div id="successModal" class="modal">
+        <div class="modal__content">
+            <span class="close">&times;</span>
+            <h2>Registration Successful!</h2>
+            <p class="success-message">You have successfully registered. Welcome to our community!</p>
+            <button id="closeSuccessModal">Close</button>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // Get the modal
-    var modal = document.getElementById("termsModal");
+    <script>
+        const form = document.getElementById('registerForm');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const dobInput = document.getElementById('dob');
+        const submitBtn = document.getElementById('submitBtn');
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("termsBtn");
+        const successModal = document.getElementById('successModal');
+        const closeSuccessModal = document.getElementById('closeSuccessModal');
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        function validateUsername() {
+            const username = usernameInput.value.trim();
+            const regex = /^[A-Za-z\s]{3,}$/;
+            if (!regex.test(username)) {
+                usernameInput.classList.add('invalid');
+                document.getElementById('usernameError').classList.remove('hidden');
+                return false;
+            }
+            usernameInput.classList.remove('invalid');
+            document.getElementById('usernameError').classList.add('hidden');
+            return true;
+        }
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
+        function validateEmail() {
+            const email = emailInput.value.trim();
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regex.test(email)) {
+                emailInput.classList.add('invalid');
+                document.getElementById('emailError').classList.remove('hidden');
+                return false;
+            }
+            emailInput.classList.remove('invalid');
+            document.getElementById('emailError').classList.add('hidden');
+            return true;
+        }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
+        function validatePassword() {
+            const password = passwordInput.value.trim();
+            const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!regex.test(password)) {
+                passwordInput.classList.add('invalid');
+                document.getElementById('passwordError').classList.remove('hidden');
+                return false;
+            }
+            passwordInput.classList.remove('invalid');
+            document.getElementById('passwordError').classList.add('hidden');
+            return true;
+        }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
+        function validateConfirmPassword() {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordInput.classList.add('invalid');
+                document.getElementById('confirmPasswordError').classList.remove('hidden');
+                return false;
+            }
+            confirmPasswordInput.classList.remove('invalid');
+            document.getElementById('confirmPasswordError').classList.add('hidden');
+            return true;
+        }
+
+        function validateDOB() {
+            const dob = new Date(dobInput.value);
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            const monthDifference = today.getMonth() - dob.getMonth();
+            if (
+                monthDifference < 0 ||
+                (monthDifference === 0 && today.getDate() < dob.getDate())
+            ) {
+                age--;
+            }
+            if (age < 18) {
+                dobInput.classList.add('invalid');
+                document.getElementById('dobError').classList.remove('hidden');
+                submitBtn.disabled = true;
+                return false;
+            }
+            dobInput.classList.remove('invalid');
+            document.getElementById('dobError').classList.add('hidden');
+            return true;
+        }
+
+        function checkFormValidity() {
+            const isFormValid =
+                validateUsername() &&
+                validateEmail() &&
+                validatePassword() &&
+                validateConfirmPassword() &&
+                validateDOB();
+            submitBtn.disabled = !isFormValid;
+            return isFormValid;
+        }
+
+        usernameInput.addEventListener('input', validateUsername);
+        emailInput.addEventListener('input', validateEmail);
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+        dobInput.addEventListener('input', validateDOB);
+        form.addEventListener('input', checkFormValidity);
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            if (checkFormValidity()) {
+                successModal.style.display = 'block';
+            }
+        });
+
+        closeSuccessModal.addEventListener('click', function () {
+            successModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target == successModal) {
+                successModal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
+
 </html>

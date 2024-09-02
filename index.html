@@ -4,71 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css" />
     <title>Fitclub</title>
     <style>
-        /* Swiper Styles */
-        .swiper {
-            width: 100%;
-            height: 60px;
-            background-color: #333;
+        /* Swiper Styles - Removed */
+        
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
-        .swiper-slide {
+
+        .nav__menu {
             display: flex;
+            flex-direction: row;
             align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            font-family: 'Lato', sans-serif;
-            color: #fff;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease;
+            justify-content: space-around;
         }
-        .swiper-slide:hover {
-            background-color: #555;
-        }
-        .swiper-slide a {
-            color: #fff;
+
+        .nav__menu a {
+            padding: 10px;
             text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
         }
-        .swiper-pagination-bullet {
-            background: #fff;
+
+        .nav__menu a:hover {
+            color: #007bff;
         }
-        .swiper-pagination-bullet-active {
-            background: #007bff;
-        }
-        /* Modal styles */
-        .modal {
-          display: none;
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgb(0,0,0);
-          background-color: rgba(0,0,0,0.4);
-          padding-top: 60px;
-        }
-        .modal__content {
-          background-color: #fefefe;
-          margin: 5% auto;
-          padding: 20px;
-          border: 1px solid #888;
-          width: 80%;
-        }
-        .close {
-          color: #aaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-          color: black;
-          text-decoration: none;
-          cursor: pointer;
+
+        @media (max-width: 768px) {
+            .nav__menu {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav__menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                color: #fff;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -77,16 +67,16 @@
         <div class="nav__logo">
             <a href="#"><img src="assets/logo.png" alt="logo" /></a>
         </div>
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><a href="index.html"><i class="fas fa-home"></i> Home</a></div>
-                <div class="swiper-slide"><a href="programs.html"><i class="fas fa-dumbbell"></i> Programs</a></div>
-                <div class="swiper-slide"><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></div>
-                <div class="swiper-slide"><a href="about.html"><i class="fas fa-info-circle"></i> About</a></div>
-                <div class="swiper-slide"><a href="community.html"><i class="fas fa-users"></i> Community</a></div>
-                <div class="swiper-slide"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></div>
-            </div>
-            <div class="swiper-pagination"></div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav__menu">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="programs.html"><i class="fas fa-dumbbell"></i> Programs</a>
+            <a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="community.html"><i class="fas fa-users"></i> Community</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
         </div>
     </nav>
 
@@ -109,7 +99,6 @@
     <section class="section__container explore__container">
         <div class="explore__header">
             <h2 class="section__header">EXPLORE OUR PROGRAM</h2>
-            <div class="explore__nav"></div>
         </div>
         <div class="explore__grid">
             <div class="explore__card" id="strengthBtn">
@@ -321,18 +310,9 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper('.swiper', {
-            direction: 'horizontal',
-            loop: true,
-            speed: 800,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
+        // Hamburger Menu Script
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav__menu').classList.toggle('active');
         });
 
         // Modal functionality
