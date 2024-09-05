@@ -63,9 +63,9 @@
             <div class="footer__socials">
                 <a href="#"><img src="assets/logo.png" alt="logo"></a>
                 <p>Connect with us on social media</p>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" class="text-white mx-2" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="text-white mx-2" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" class="text-white mx-2" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="footer__links">
                 <a href="about.html">About Us</a>
@@ -108,10 +108,8 @@
     </div>
 
     <script>
-        // Get the modals
         var modals = document.querySelectorAll(".modal");
 
-        // Get the buttons that open the modals
         var buttons = {
             personalTrainingBtn: document.getElementById("personalTrainingBtn"),
             nutritionalGuidanceBtn: document.getElementById("nutritionalGuidanceBtn"),
@@ -119,15 +117,12 @@
             groupClassesBtn: document.getElementById("groupClassesBtn")
         };
 
-        // Get the <span> elements that close the modals
         var spans = document.querySelectorAll(".close");
 
-        // Function to open a modal
         function openModal(modalId) {
             document.getElementById(modalId).style.display = "block";
         }
 
-        // Function to close a modal
         function closeModal() {
             modals.forEach(modal => modal.style.display = "none");
         }

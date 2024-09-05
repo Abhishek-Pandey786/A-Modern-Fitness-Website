@@ -34,6 +34,19 @@
 
     <section class="section__container program__container">
         <h2 class="section__header">Our Programs</h2>
+
+        <!-- Carousel Slider -->
+        <div class="carousel-container">
+            <span class="carousel-arrow left">&#10094;</span>
+            <div class="carousel">
+                <div class="carousel-slide"><img src="assets/program1.jpg" alt="Strength Training"></div>
+                <div class="carousel-slide"><img src="assets/program2.jpg" alt="Cardio"></div>
+                <div class="carousel-slide"><img src="assets/program3.jpg" alt="Yoga"></div>
+                <div class="carousel-slide"><img src="assets/program4.jpg" alt="Weight Loss"></div>
+            </div>
+            <span class="carousel-arrow right">&#10095;</span>
+        </div>
+
         <div class="program__grid">
             <div class="program__card">
                 <h4>Strength Training</h4>
@@ -60,9 +73,9 @@
             <div class="footer__socials">
                 <a href="#"><img src="assets/logo.png" alt="logo"></a>
                 <p>Connect with us on social media</p>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" class="text-white mx-2" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="text-white mx-2" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" class="text-white mx-2" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="footer__links">
                 <a href="about.html">About Us</a>
@@ -81,26 +94,43 @@
     </div>
 
     <script>
-        // Get the modal
+        // Carousel Functionality
+        const carousel = document.querySelector('.carousel');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevButton = document.querySelector('.carousel-arrow.left');
+        const nextButton = document.querySelector('.carousel-arrow.right');
+        let currentSlide = 0;
+
+        function updateCarousel() {
+            const slideWidth = slides[currentSlide].clientWidth;
+            carousel.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide === 0) ? slides.length - 1 : currentSlide - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide === slides.length - 1) ? 0 : currentSlide + 1;
+            updateCarousel();
+        });
+
+        window.addEventListener('resize', updateCarousel);
+
+        // Modal Functionality
         var modal = document.getElementById("moreInfoModal");
-
-        // Get the button that opens the modal
         var btn = document.getElementById("moreInfoBtn");
-
-        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal
         btn.onclick = function() {
             modal.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
